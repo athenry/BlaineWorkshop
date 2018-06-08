@@ -34,7 +34,7 @@ head(libdata)
 
 ## Now try the command but with 10 rows (add the number 10 after the comma)
 
-head(libdata,   ) # See 10 rows
+head(libdata, 10) # See 10 rows
 
 
 ## Step 5. Let's explore the ggplot() function and then create a line chart 
@@ -59,7 +59,7 @@ ggplot(data =libdata, aes(x=time, y=cost, col=collection_type)) + geom_line()
 ## Step 6. Apply what you have learned. Create a line chart showing number of users over time. 
 # Set the following properties: data=libdata, x=time, y=users, col=collection_type. Put geom_line() at the end.
 
-ggplot(data=   , aes(x=    , y=    , col=     )) + 
+ggplot(data=libdata, aes(x=time, y=users, col=collection_type)) + geom_line()
 
 
 ## Step 7. It was hard to do comparisons in the previous chart because there were so many lines. 
@@ -73,7 +73,7 @@ ggplot(data =libdata, aes(x=time, y=users, col=collection_type)) +
 # subplots looking at cost over time, faceted by collection_type. 
 # Set x=time, y=cost, col=collection_type and facet_wrap(~collection_type). Use Step 7 code as your example.
 
-ggplot(data =    , aes(x = , y = , col =   )) +        + facet_wrap(   )
+ggplot(data =libdata, aes(x =time, y = cost, col =  collection_type )) +  geom_line() + facet_wrap(~collection_type)
 
 
 ####### Section 2. Filtering, Graphing and Saving #######
@@ -89,7 +89,7 @@ journals  # See what's in the journals data frame by printing it to the console.
 ## Step 10. Draw a line plot using the journals dataset looking at cost over time by collection type. 
 # Set data=journals, x=time, y=cost and col=collection_type. Use geom_line() at the end.
 
-ggplot(data =      , aes(x=   , y=    , col=       )) + 
+ggplot(data = journals, aes(x=time, y=cost, col=collection_type)) + geom_line()
 
 
 ## Step 11. Change the theme of this chart using the theme_minimal() function.
@@ -101,12 +101,12 @@ ggplot(data = journals , aes(x=time, y=cost, col=collection_type)) +
 ## Your turn. Now change the theme to theme_classic() function. 
 
 ggplot(data = journals , aes(x=time, y=cost, col=collection_type)) + 
-  geom_line() + 
+  geom_line() + theme_classic()
 
 
 ## Step 12. Let's add a title to this chart using the labs() function. Give it whatever title you want.
 
-my_title <- "PUT YOUR TITLE HERE"
+my_title <- "Cost Trends of Online and Print Journals"
 
 ggplot(data = journals , aes(x=time, y=cost, col=collection_type)) + geom_line() + 
   theme_classic() + labs(title=my_title)
@@ -116,7 +116,7 @@ ggplot(data = journals , aes(x=time, y=cost, col=collection_type)) + geom_line()
 # Add color="Journal type" inside of labs(). 
 
 ggplot(data = journals , aes(x=time, y=cost, col=collection_type)) + geom_line() +
-  theme_classic() + labs(title=my_title, color="         ")
+  theme_classic() + labs(title=my_title, color="Journal type")
 
 
 ## Step 14. Let's fix that x-axis using the scale_x_continuous() function.
@@ -124,7 +124,7 @@ ggplot(data = journals , aes(x=time, y=cost, col=collection_type)) + geom_line()
 
 ggplot(data = journals , aes(x=time, y=cost, col=collection_type)) + geom_line() + 
   theme_classic() + labs(title=my_title, color="Journal type") + 
-  scale_x_continuous(breaks= c(           ))
+  scale_x_continuous(breaks= c(2015, 2016, 2017))
 
 ?scale_x_continuous() # learn more about this function.
 
@@ -190,7 +190,7 @@ type_by_cost
 
 # iii. Draw the chart. Set x = type_by_cost and y=cost
 
-ggplot(libdata, aes(x=        , y=         )) + geom_col() + coord_flip() 
+ggplot(libdata, aes(x=type_by_cost, y=cost)) + geom_col() + coord_flip() 
 
 
 ## Step 20. Add a title, subtitle and axis labels using the labs() function. 
@@ -202,19 +202,26 @@ ggplot(libdata, aes(x=type_by_cost, y=cost)) + geom_col() +
 ## Step 21. Apply what you have learned. Create a bar chart for number of users by collection type. 
 # Set data = libdata, x=collection_type y=users. Add geom_col() at the end.
 
-ggplot(data = , aes(x=     , y =      ))  +   
+ggplot(data = libdata, aes(x= collection_type, y =  users))  +  geom_col() 
 
 
 # Now use the same code from Step 21, but also flip the x and y axes by adding coord_flip() at the end.
 
-ggplot(data = , aes(x=    , y =    ))  +      + 
+ggplot(data = libdata, aes(x= collection_type, y =  users))  +  geom_col()  + coord_flip()
 
   
 # Now use the same code from the step above, but also add a title (see Step 20 for a title example). 
   
-  
+ggplot(data = libdata, aes(x= collection_type, y =  users))  +  geom_col()  + coord_flip()  + labs(title="Users By Collection Type", subtitle="Based on data from 2015-2017")
 
-  
+##My own addition (not included in original exercise). Bar charts are best presented with ordered bars. We will create another "type_by" value to put these in order by users.
+
+type_by_users <- fct_reorder(type, libdata$users) #orders collection types by users.
+
+##Now lets finalize our chart with ordered bars.
+
+ggplot(data = libdata, aes(x= type_by_users, y = users))  +  geom_col()  + coord_flip()  + labs(title="Users By Collection Type", subtitle="Based on data from 2015-2017")
+
 ####### Section 4. More Advanced Stuff: Creating a Stacked Bar Chart #######
 
 ## Step 22. Let's look at the break down over time on each bar. 
