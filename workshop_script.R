@@ -216,7 +216,7 @@ ggplot(data = libdata, aes(x= collection_type, y =  users))  +  geom_col()  + co
 
 ##My own addition (not included in original exercise). Bar charts are best presented with ordered bars. We will create another "type_by" value to put these in order by users.
 
-type_by_users <- fct_reorder(type, libdata$users) #orders collection types by users.
+type_by_users <- fct_reorder(.f=type, .x=libdata$users, .fun = sum) #orders collection types by users.
 
 ##Now lets finalize our chart with ordered bars.
 
