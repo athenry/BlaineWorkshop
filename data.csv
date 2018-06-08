@@ -1,0 +1,25 @@
+collection_type,storage,time,cost,users,id
+Digital Images,online,2015,10000,120,1
+Digital Images,online,2016,8000,335,2
+Digital Images,online,2017,5000,500,3
+Digitized Books,online,2015,5000,500,4
+Digitized Books,online,2016,7500,950,5
+Digitized Books,online,2017,8000,1200,6
+eBooks,online,2015,1575,115,7
+eBooks,online,2016,1800,309,8
+eBooks,online,2017,2800,550,9
+Print Journals,physical,2015,2000,400,10
+Print Journals,physical,2016,1500,450,11
+Print Journals,physical,2017,1200,600,12
+Online Journals,online,2015,4500,350,13
+Online Journals,online,2016,5000,758,14
+Online Journals,online,2017,7000,1000,15
+Physical Images,physical,2015,2300,58,16
+Physical Images,physical,2016,1600,100,17
+Physical Images,physical,2017,1000,159,18
+Serials,physical,2015,1500,120,19
+Serials,physical,2016,1000,200,20
+Serials,physical,2017,900,225,21
+Shelved Books,physical,2015,20000,600,22
+Shelved Books,physical,2016,10000,750,23
+Shelved Books,physical,2017,5000,850,24
